@@ -1,0 +1,27 @@
+// About Giggle Jungle Scss
+.title-body-text {
+  color: var(--e-global-color-secondary);
+  font-weight: 700;
+}
+#about-giggle-jungle-zone-block {
+  .elementor-element {
+    .e-grid {
+      .elementor-element {
+        .elementor-widget-text-editor {
+          .elementor-widget-container {
+            p {
+              height: 80px;
+            }
+          }
+        }
+      }
+      .our-play-zone-item {
+        .elementor-widget-container {
+          h2 {
+            height: 96px !important;
+          }
+        }
+      }
+    }
+  }
+}
