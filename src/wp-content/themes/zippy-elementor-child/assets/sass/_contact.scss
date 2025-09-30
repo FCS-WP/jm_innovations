@@ -1,0 +1,20 @@
+#contact-us-block {
+  a {
+    color: var(--e-global-color-text);
+    &:hover {
+      color: var(--e-global-color-secondary);
+    }
+  }
+  h2 {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .jkit-icon-box-wrapper {
+    border: none;
+    padding: 0px;
+  }
+  #contact-us-form-block {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 25px;
+  }
+}

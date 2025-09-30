@@ -1,0 +1,17 @@
+#footer-block {
+  #footer-menu-block {
+    nav {
+      ul {
+        li {
+          a {
+            justify-content: center;
+            background-color: var(--e-global-color-80b98d0);
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}
