@@ -1,7 +1,7 @@
 #cart_custom {
   table {
     thead {
-      background: var(--e-global-color-secondary);
+      background: var(--e-global-color-text);
       color: var(--e-global-color-ff314ad);
     }
     tbody {
@@ -26,6 +26,13 @@
           }
         }
       }
+    }
+  }
+  .cart-collaterals{
+    .checkout-button{
+        &:hover{
+            background-color: var(--e-global-color-80b98d0);
+        }
     }
   }
 }
