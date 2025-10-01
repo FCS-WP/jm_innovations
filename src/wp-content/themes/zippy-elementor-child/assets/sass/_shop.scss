@@ -1,0 +1,15 @@
+#shop-block {
+  ul {
+    li {
+      border-radius: 15px;
+      background: var(--e-global-color-f34b85b);
+      h2,
+      .price {
+        padding: 10px 15px;
+      }
+      .add_to_cart_button {
+        margin: 15px 0px;
+      }
+    }
+  }
+}

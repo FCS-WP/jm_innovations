@@ -1,0 +1,1 @@
+$("#shop-block").find(".button").html("View Detail");

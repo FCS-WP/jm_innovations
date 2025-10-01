@@ -1,0 +1,31 @@
+#cart_custom {
+  table {
+    thead {
+      background: var(--e-global-color-secondary);
+      color: var(--e-global-color-ff314ad);
+    }
+    tbody {
+      .product-name {
+        a {
+          color: var(--e-global-color-text);
+        }
+      }
+      tr {
+        &:nth-child(2) {
+          #coupon_code {
+            width: 120px;
+          }
+          button {
+            background: var(--e-global-color-80b98d0);
+            padding: 12px 12px;
+            color: var(--e-global-color-ff314ad);
+            border-radius: 5px;
+            &:hover{
+                background-color: var(--e-global-color-secondary);
+            }
+          }
+        }
+      }
+    }
+  }
+}
