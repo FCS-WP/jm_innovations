@@ -1,5 +1,6 @@
 #single-entrance-block {
   #add-to-cart-block {
+    padding: 0px;
     tr {
       display: flex;
       flex-direction: column;
@@ -9,6 +10,10 @@
         padding-left: 0px;
         text-align: left;
         font-size: 18px;
+        text-transform: uppercase;
+        font-family: var(--e-global-typography-primary-font-family), Sans-serif;
+        font-weight: var(--e-global-typography-primary-font-weight);
+        color: var(--e-global-color-secondary);
       }
       .value {
         background-color: var(--e-global-color-ff314ad);
@@ -18,40 +23,63 @@
         gap: 15px;
         align-items: center;
         &:focus-visible {
+          outline: none;
           border-color: var(--e-global-color-accent);
         }
         .reset_variations {
           font-weight: 500;
         }
-        #package {
-          border: 1px solid var(--e-global-color-accent);
-          border-radius: 10px;
-          padding: 0.8rem 1.2rem;
+        select {
+          border: 0px;
+          border-bottom: 1px solid var(--e-global-color-accent);
+          padding: 0.8rem 1.2rem 0.8rem 0rem;
+          font-family: var(--e-global-typography-primary-font-family), Sans-serif;
+          &:focus-visible {
+            outline: none;
+          }
         }
       }
     }
     .woocommerce-variation-add-to-cart {
       display: flex;
       flex-wrap: wrap;
-      p {
-        display: block;
-        width: 100%;
-        margin: 0px;
-        padding: 15px 0px;
+      h2{
         font-size: 18px;
         color: var(--e-global-color-secondary);
-        font-family: var(--e-global-typography-primary-font-family), Sans-serif;
-        font-weight: var(--e-global-typography-primary-font-weight);
       }
-      .add-ons-select-block {
+      .add-ons-selection-block{
         width: 100%;
         display: block;
         padding-bottom: 15px;
         padding-right: 9%;
-        .add-ons-package {
-          border: 1px solid var(--e-global-color-accent);
-          border-radius: 10px;
-          padding: 0.8rem 1.2rem;
+        .form-select {
+          border: 0px;
+          border-bottom: 1px solid var(--e-global-color-accent);
+          padding: 0.8rem 1.2rem 0.8rem 0rem;
+          font-family: var(--e-global-typography-secondary-font-family);
+          &:focus-visible {
+            outline: none;
+          }
+        }
+      }
+      .package-range-block {
+        width: 100%;
+        margin-bottom: 30px;
+        li {
+          font-family: var(--e-global-typography-primary-font-family),
+            Sans-serif;
+        }
+      }
+      .quantity{
+          .qty{
+            width: 85px;
+          }
+      }
+      .single_add_to_cart_button{
+        background-color: var(--e-global-color-secondary);
+        border-radius: 5px;
+        &:hover{
+          background-color: var(--e-global-color-80b98d0);
         }
       }
     }
