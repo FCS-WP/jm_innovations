@@ -25,7 +25,7 @@ function zippy_custom_before_add_to_cart()
         }
 ?>
         <div style="display: block; width: 100%;" class="add-ons-selection-block">
-            <h2 class="add-ons-title">ADD ONS</h2>
+            <h2 class="add-ons-title">add ons</h2>
             <select class="form-select" name="add_on_select" id="add_on_select" aria-label="Add-ons select">
                 <option selected value="">Choose your option</option>
                 <?php foreach ($all_add_ons as $add_on) : ?>
@@ -45,13 +45,15 @@ function zippy_custom_before_add_to_cart()
             </div>
             </select>
             <div class="additonal-adult-block form-check">
-                <h2 class="additional-adult-tile">ADDITIONAL ADULT</h2>
+                <h2 class="additional-adult-tile">Additional adult</h2>
                 <div class="check-form">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Additional Adult
-                        </label>
+                        <div class="check-box-block">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Additional Adult
+                            </label>
+                        </div>
                         <?php
                         if (!empty($additional_adults)) { ?>
                             <select name="additional_adult_select" id="additional_adult_select" style="pointer-events: none;" class="additinal-adult-select-block form-select" aria-label="Default select example">
@@ -93,7 +95,7 @@ function custom_cart_item_data($item_data, $cart_item)
         $addon_product = wc_get_product($cart_item['add_on_id']);
         $item_data[] = array(
             'name'  => __('Add-On', 'woocommerce'),
-            'value' => $addon_product ? $addon_product->get_name() . 'x' . wc_price($addon_product->get_price()) : 'N/A',
+            'value' => $addon_product ? $addon_product->get_name() . '-' . wc_price($addon_product->get_price()) : 'N/A',
         );
     }
     if (!empty($cart_item['additional_adult_select'])) {
@@ -107,7 +109,7 @@ function custom_cart_item_data($item_data, $cart_item)
         }
         $item_data[] = array(
             'name' => __('Adults', 'woocommerce'),
-            'value' =>  wp_kses_post($cart_item['additional_adult_select'] . 'x' . wc_price((int)$additional_price)),
+            'value' =>  wp_kses_post($cart_item['additional_adult_select'] . '-' . wc_price((int)$additional_price)),
         );
     }
     return $item_data;
@@ -144,21 +146,25 @@ add_action('woocommerce_before_calculate_totals', 'caculate_total_cart_fee');
 function caculate_total_cart_fee($cart)
 {
     foreach ($cart->get_cart() as $cart_item_key => $cart_item) {
+        $final_product = $cart_item['data'];
+        $base_price = $final_product->get_regular_price();
+        $additional_price = 0;
         $additional_adults = get_field('additional_adult', $cart_item['product_id']);
-        $add_on_item = (!empty($cart_item['add_on_id'])) ? wc_get_product($cart_item['add_on_id']) : 0;
-        $add_on_item_price = ($add_on_item) ? $add_on_item->get_price() : 0;
-        if (!empty($cart_item['product_id'])) {
+        if (!empty($cart_item['product_id']) && is_array($additional_adults)) {
             foreach ($additional_adults as $row) {
                 if ($row['quantity'] == $cart_item['additional_adult_select']) {
-                    $additional_price =  (int)$row['price'];
+                    $additional_price = (int)$row['price'];
                     break;
                 }
             }
         }
-        if ($add_on_item || $additional_price) {
-            $cart_item['data']->set_price(
-                $cart_item['data']->get_price() + $add_on_item_price + $additional_price
-            );
+        $add_on_item_price = 0;
+        if (!empty($cart_item['add_on_id'])) {
+            $add_on_item = wc_get_product($cart_item['add_on_id']);
+            if ($add_on_item) {
+                $add_on_item_price = $add_on_item->get_price();
+            }
         }
+        $final_product->set_price($base_price + $add_on_item_price + $additional_price);
     }
 }
