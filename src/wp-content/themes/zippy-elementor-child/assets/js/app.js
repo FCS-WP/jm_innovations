@@ -1,5 +1,5 @@
 // import { DisplayLabel } from './components/DisplayLabel';
-
+import './custom';
 let Main = {
   init: async function () {
 
